@@ -28,7 +28,7 @@ public class AsteroidController : ControllerBase
 
         var asteroids = await _nasa.ListAsteroids(model.StartDate, model.EndDate);
 
-        var result = asteroids.Where(x => x.CloseApproachData.Select(x => x.OrbitingBody).Contains(model.Planet))
+        var data = asteroids.Where(x => x.CloseApproachData.Select(x => x.OrbitingBody).Contains(model.Planet))
             .Select(x => new AsteroidResponseModel
             {
                 Name = x.Name,
@@ -40,6 +40,14 @@ public class AsteroidController : ControllerBase
             .Skip(model.Page-1)
             .Take(model.ItemsPage)            
             .ToList();
+
+        var result = new
+        {
+            data,
+            model.ItemsPage,
+            model.Page,
+            TotalRecords = asteroids.Count
+        };
 
         return Ok(result);
     }

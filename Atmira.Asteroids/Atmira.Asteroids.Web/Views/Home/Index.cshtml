@@ -4,7 +4,7 @@
 
 @{
     ViewData["Title"] = "Home Page";
-    var asteroids = (List<AsteroidApiResponseModel>)ViewData["Asteroids"] ?? new List<AsteroidApiResponseModel>();
+    var asteroids = (BaseApiResponse)ViewData["Asteroids"] ?? new BaseApiResponse();
 }
 
 <div class="container">
@@ -58,7 +58,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach(var item in asteroids)
+                    @foreach(var item in asteroids.Data)
                     {
                         <tr>
                             <td>@item.Name</td>

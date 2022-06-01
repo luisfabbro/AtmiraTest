@@ -6,7 +6,7 @@ namespace Atmira.Asteroids.Web.Services;
 
 public interface IAsteroidApiService
 {
-    Task<List<AsteroidApiResponseModel>?> ListAsteroids(AsteroidApiRequestModel model);
+    Task<BaseApiResponse?> ListAsteroids(AsteroidApiRequestModel model);
 }
 
 public class AsteroidApiService : IAsteroidApiService
@@ -19,7 +19,7 @@ public class AsteroidApiService : IAsteroidApiService
     }
     #endregion
 
-    async public Task<List<AsteroidApiResponseModel>?> ListAsteroids(AsteroidApiRequestModel model)
+    async public Task<BaseApiResponse?> ListAsteroids(AsteroidApiRequestModel model)
     {
         var client = new HttpClient();
         var url = $"{AsteroidEndpoint}?planet={model.Planet}&startDate={model.StartDate:yyyy-MM-dd}&endDate={model.EndDate:yyyy-MM-dd}";
@@ -27,7 +27,7 @@ public class AsteroidApiService : IAsteroidApiService
         var response = await client.GetAsync(url);
         var content = await response.Content.ReadAsStringAsync();
 
-        var result = JsonSerializer.Deserialize<List<AsteroidApiResponseModel>>(content);
+        var result = JsonSerializer.Deserialize<BaseApiResponse>(content);
         return result;
     }
 }
