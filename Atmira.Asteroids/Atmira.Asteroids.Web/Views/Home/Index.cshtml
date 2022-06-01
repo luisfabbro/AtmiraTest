@@ -1,0 +1,75 @@
+﻿@using Atmira.Asteroids.Web.Models.ApiRequest
+@using Atmira.Asteroids.Web.Models.ApiResponse
+@model AsteroidApiRequestModel
+
+@{
+    ViewData["Title"] = "Home Page";
+    var asteroids = (List<AsteroidApiResponseModel>)ViewData["Asteroids"] ?? new List<AsteroidApiResponseModel>();
+}
+
+<div class="container">
+    <div class="row">
+        <div class="header col-md-12">
+            <form method="post" action="@Url.Action("Index", "Home")">
+                <div class="row">
+                    <div class="col-md-4">
+                        <select id="planet" name="planet">
+                            <option value="Merc" selected="@(Model.Planet == "Merc")">Mercurio</option>
+                            <option value="Venus" selected="@(Model.Planet == "Venus")">Venus</option>
+                            <option value="Earth" selected="@(Model.Planet == "Earth")">Tierra</option>
+                            <option value="Mars" selected="@(Model.Planet == "Mars")">Marte</option>
+                            <option value="Juptr" selected="@(Model.Planet == "Juptr")">Jupiter</option>
+                            <option value="Saturn" selected="@(Model.Planet == "Saturn")">Saturno</option>
+                            <option value="Uranus" selected="@(Model.Planet == "Uranus")">Urano</option>
+                            <option value="Neptune" selected="@(Model.Planet == "Neptune")">Neptuno</option>
+                        </select>
+                        @Html.ValidationMessageFor(x => x.Planet)
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <input type="date" id="StartDate" name="StartDate" value="@Model.StartDate.ToString("yyyy-MM-dd")" />
+                        @Html.ValidationMessageFor(x => x.StartDate)
+                    </div>
+
+                    <div class="col-md-4">
+                        <input type="date" id="EndDate" name="EndDate" value="@Model.EndDate.ToString("yyyy-MM-dd")" />
+                        @Html.ValidationMessageFor(x => x.EndDate)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit">Buscar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="content col-md-12">
+            <table class="col-md-12 d-lg-table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Diametro</th>
+                        <th>Velocidad</th>
+                        <th>Fecha</th>
+                        <th>Planeta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in asteroids)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Diameter</td>
+                            <td>@item.Velocity</td>
+                            <td>@item.Date.ToString("dd-MM-yyyy")</td>
+                            <td>@item.Planet</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

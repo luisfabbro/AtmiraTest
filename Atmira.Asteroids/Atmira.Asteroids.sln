@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atmira.Asteroids.Model", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atmira.Asteroids.Core", "Atmira.Asteroids.Core\Atmira.Asteroids.Core.csproj", "{0F5DCE1A-8D82-415C-8FC7-C72DD1E13A84}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atmira.Asteroids.Web", "Atmira.Asteroids.Web\Atmira.Asteroids.Web.csproj", "{22C60576-66CE-4500-87E4-711431185136}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{0F5DCE1A-8D82-415C-8FC7-C72DD1E13A84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F5DCE1A-8D82-415C-8FC7-C72DD1E13A84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F5DCE1A-8D82-415C-8FC7-C72DD1E13A84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22C60576-66CE-4500-87E4-711431185136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22C60576-66CE-4500-87E4-711431185136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22C60576-66CE-4500-87E4-711431185136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22C60576-66CE-4500-87E4-711431185136}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +45,7 @@ Global
 		{600EB384-640A-4E29-8F69-60EEFBC20535} = {0FBF6647-5E5C-440A-AF27-F699428B9FEC}
 		{DAA6C48B-6948-42C1-8B43-545081C29B9F} = {0FBF6647-5E5C-440A-AF27-F699428B9FEC}
 		{0F5DCE1A-8D82-415C-8FC7-C72DD1E13A84} = {0FBF6647-5E5C-440A-AF27-F699428B9FEC}
+		{22C60576-66CE-4500-87E4-711431185136} = {25C389B8-2DC4-4B3C-99B4-A22FF69B7E7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {AF735C4E-4D11-401C-AA65-77ACD4D72BCC}
