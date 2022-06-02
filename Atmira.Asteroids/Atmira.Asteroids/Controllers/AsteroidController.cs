@@ -27,6 +27,9 @@ public class AsteroidController : ControllerBase
         }
 
         var asteroids = await _nasa.ListAsteroids(model.StartDate, model.EndDate);
+        var totalRecords = asteroids.Where(x => x.CloseApproachData.Select(x => x.OrbitingBody).Contains(model.Planet)).Count();
+
+        var skip = (model.Page - 1) * model.ItemsPage;
 
         var data = asteroids.Where(x => x.CloseApproachData.Select(x => x.OrbitingBody).Contains(model.Planet))
             .Select(x => new AsteroidResponseModel
@@ -37,7 +40,7 @@ public class AsteroidController : ControllerBase
                 Velocity = x.CloseApproachData.First().RelativeVelocity.KilometersPerHour,
                 Date = x.CloseApproachData.First().CloseAproachDate
             })
-            .Skip(model.Page-1)
+            .Skip(skip)
             .Take(model.ItemsPage)            
             .ToList();
 
@@ -46,7 +49,7 @@ public class AsteroidController : ControllerBase
             data,
             model.ItemsPage,
             model.Page,
-            TotalRecords = asteroids.Count
+            TotalRecords = totalRecords
         };
 
         return Ok(result);
