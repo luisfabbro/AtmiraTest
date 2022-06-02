@@ -7,47 +7,48 @@
     var asteroids = (BaseApiResponse)ViewData["Asteroids"] ?? new BaseApiResponse();
 }
 
-<div class="container">
-    <div class="row">
-        <div class="header col-md-12">
-            <form method="post" action="@Url.Action("Index", "Home")">
-                <div class="row">
-                    <div class="col-md-4">
-                        <select id="planet" name="planet">
-                            <option value="Merc" selected="@(Model.Planet == "Merc")">Mercurio</option>
-                            <option value="Venus" selected="@(Model.Planet == "Venus")">Venus</option>
-                            <option value="Earth" selected="@(Model.Planet == "Earth")">Tierra</option>
-                            <option value="Mars" selected="@(Model.Planet == "Mars")">Marte</option>
-                            <option value="Juptr" selected="@(Model.Planet == "Juptr")">Jupiter</option>
-                            <option value="Saturn" selected="@(Model.Planet == "Saturn")">Saturno</option>
-                            <option value="Uranus" selected="@(Model.Planet == "Uranus")">Urano</option>
-                            <option value="Neptune" selected="@(Model.Planet == "Neptune")">Neptuno</option>
-                        </select>
-                        @Html.ValidationMessageFor(x => x.Planet)
-                    </div>
+<div class="asteroids-wrapper">
+    <div class="header">
+        <form class="filter" method="post" action="@Url.Action("Index", "Home")">
+            <div class="filter-fields">
+                <div class="form-group">
+                    <label for="planet">Planeta: </label>
+                    <select id="planet" name="planet">
+                        <option value="Merc" selected="@(Model.Planet == "Merc")">Mercurio</option>
+                        <option value="Venus" selected="@(Model.Planet == "Venus")">Venus</option>
+                        <option value="Earth" selected="@(Model.Planet == "Earth")">Tierra</option>
+                        <option value="Mars" selected="@(Model.Planet == "Mars")">Marte</option>
+                        <option value="Juptr" selected="@(Model.Planet == "Juptr")">Jupiter</option>
+                        <option value="Saturn" selected="@(Model.Planet == "Saturn")">Saturno</option>
+                        <option value="Uranus" selected="@(Model.Planet == "Uranus")">Urano</option>
+                        <option value="Neptune" selected="@(Model.Planet == "Neptune")">Neptuno</option>
+                    </select>
+                    @Html.ValidationMessageFor(x => x.Planet)
+                </div>
                     
-                    <div class="col-md-4">
-                        <input type="date" id="StartDate" name="StartDate" value="@Model.StartDate.ToString("yyyy-MM-dd")" />
-                        @Html.ValidationMessageFor(x => x.StartDate)
-                    </div>
+                <div class="form-group">
+                    <label for="StartDate">Fecha Inicio: </label>
+                    <input type="date" id="StartDate" name="StartDate" value="@Model.StartDate.ToString("yyyy-MM-dd")" />
+                    @Html.ValidationMessageFor(x => x.StartDate)
+                </div>
 
-                    <div class="col-md-4">
-                        <input type="date" id="EndDate" name="EndDate" value="@Model.EndDate.ToString("yyyy-MM-dd")" />
-                        @Html.ValidationMessageFor(x => x.EndDate)
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <button type="submit">Buscar</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+                <div class="form-group">
+                    <label for="EndDate">Fecha Fin: </label>
+                    <input type="date" id="EndDate" name="EndDate" value="@Model.EndDate.ToString("yyyy-MM-dd")" />
+                    @Html.ValidationMessageFor(x => x.EndDate)
+                </div>                
+            </div>
+            <div class="button-container">
+                <button class="btn btn-filter" type="submit">Buscar</button>
+            </div>
+                
+        </form>
     </div>
 
-    <div class="row">
-        <div class="content col-md-12">
-            <table class="col-md-12 d-lg-table table-bordered">
+    <div class="content">
+        @if (asteroids.Data.Count > 0)
+        {
+            <table class="table-bordered">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -58,18 +59,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach(var item in asteroids.Data)
+                    @foreach (var item in asteroids.Data)
                     {
                         <tr>
                             <td>@item.Name</td>
-                            <td>@item.Diameter</td>
-                            <td>@item.Velocity</td>
-                            <td>@item.Date.ToString("dd-MM-yyyy")</td>
-                            <td>@item.Planet</td>
-                        </tr>
-                    }
+                        <td>@item.Diameter</td>
+                        <td>@item.Velocity</td>
+                        <td class="date">@item.Date.ToString("dd-MM-yyyy")</td>
+                        <td class="planet">@item.Planet</td>
+                    </tr>
+                }
                 </tbody>
             </table>
-        </div>
+        }
+        else
+        {            
+            <div class="empty-state">
+                No se han encontrado datos
+            </div>
+        }
+
     </div>
+
 </div>

@@ -2,8 +2,6 @@
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Globalization;
-using System.Text.Json;
 
 namespace Atmira.Asteroids.Core.Services;
 

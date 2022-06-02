@@ -1,9 +1,6 @@
-﻿using Atmira.Asteroids.Web.Models;
-using Atmira.Asteroids.Web.Models.ApiRequest;
-using Atmira.Asteroids.Web.Models.ApiResponse;
+﻿using Atmira.Asteroids.Web.Models.ApiRequest;
 using Atmira.Asteroids.Web.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace Atmira.Asteroids.Web.Controllers
 {
